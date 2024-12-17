@@ -35,6 +35,9 @@ import androidx.compose.foundation.layout.paddingFromBaseline
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
@@ -173,6 +176,17 @@ fun AlignYourBodyRow(
 fun FavoriteCollectionsGrid(
     modifier: Modifier = Modifier
 ) {
+    LazyHorizontalGrid(
+        rows = GridCells.Fixed(2),
+        contentPadding = PaddingValues(horizontal = 16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        modifier = modifier.height(168.dp)
+    ) {
+        items(favoriteCollectionsData) { item ->
+            FavoriteCollectionCard(item.drawable, item.text, Modifier.height(80.dp) )
+        }
+    }
     // Implement composable here
 }
 
