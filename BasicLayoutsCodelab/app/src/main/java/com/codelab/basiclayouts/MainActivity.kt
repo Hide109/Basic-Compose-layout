@@ -65,6 +65,10 @@ import androidx.compose.material3.windowsizeclass.WindowSizeClass
 import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.material3.windowsizeclass.calculateWindowSizeClass
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -88,14 +92,19 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+
 // Step: Search bar - Modifiers
 @Composable
 fun SearchBar(
     modifier: Modifier = Modifier
 ) {
+    var text by remember {
+        mutableStateOf("")
+    }
     TextField(
-        value = "",
-        onValueChange = {},
+        value = text,
+        onValueChange = {text = it},
+        singleLine = true,
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
